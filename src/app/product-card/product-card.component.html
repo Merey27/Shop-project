@@ -1,0 +1,50 @@
+<app-menu></app-menu>
+
+<div class="main">
+  <div class="sort-card border">
+    <label for="search">Search:</label>
+    <input id="search" type="text" [(ngModel)]="search">
+    <div class="category">
+      <p>Category:</p>
+      <select [(ngModel)]="searchCategory">
+        <option [defaultSelected]="true" value="All">All</option>
+        <option *ngFor="let product of categoryList" [ngValue]="product"
+               >{{product}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="prod-card">
+    <div class="col zoom border" *ngFor="let productData of products | filter: search | filterCategory: searchCategory">
+      <div class="card">
+        <img class="card-img-top" src="{{productData.imageSrc}}" alt="">
+        <h3 class="card-title">{{productData?.name}}</h3>
+        <div class="card-text">
+          <p>Unit: {{productData?.units}}</p>
+          <p class="price">Price ${{productData?.price}}/unit</p>
+        </div>
+        <div class="product-quantity">
+          <div class="add-quantity">
+            <button class="small green" [disabled]="productData?.isAdded" (click)="decreaseQu(productData)">-</button>
+            <input type="text" [disabled]="productData?.isAdded" (keypress)="isInputNumber($event)"
+                   [(ngModel)]='productData.quantity'
+                   [value]="productData.quantity">
+            <button class="small green" [disabled]="productData?.isAdded" (click)="increaseQu(productData)">+</button>
+          </div>
+
+          <div class="addBtns" *ngIf="!productData.isAdded">
+            <button class="green" (click)="addToBasket(productData)">Add to basket
+            </button>
+          </div>
+
+          <div class="addBtns" *ngIf="productData.isAdded">
+            <button class="red" (click)="removeProduct(productData)">Remove
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="snackbar">Some text some message..</div>

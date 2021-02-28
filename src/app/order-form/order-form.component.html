@@ -1,0 +1,120 @@
+<app-menu></app-menu>
+
+<form class="card border" *ngIf="basketProducts.length > 0; else notFound" [formGroup]="form" (ngSubmit)="submit()">
+<!--  <h2>Ordering</h2>-->
+
+  <div class="controls">
+    <div class="form-control">
+      <label for="title">Title:</label>
+      <input id="title" type="text" formControlName="title" required/>
+      <div class="validation" *ngIf="form.controls.title.invalid && form.controls.title.touched">
+        <small *ngIf="form.controls.title.errors.required">Fill title input</small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label for="name">Name:</label>
+      <input id="name" type="text" formControlName="name" required/>
+      <div class="validation" *ngIf="form.controls.name.invalid && form.controls.name.touched">
+        <small *ngIf="form.controls.name.errors.required">Fill name input</small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label for="surname">Surname:</label>
+      <input id="surname" type="text" formControlName="surname" required/>
+      <div class="validation" *ngIf="form.controls.surname.invalid && form.controls.surname.touched">
+        <small *ngIf="form.controls.surname.errors.required">Fill surname input</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls second">
+    <div class="form-control">
+      <label for="number">Number:</label>
+      <input id="number" type="text" formControlName="number" (keypress)="isInputNumber($event)" required/>
+      <div class="validation" *ngIf="form.controls.number.invalid && form.controls.number.touched">
+        <small *ngIf="form.controls.number.errors.required">Fill number input</small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label for="street">Street:</label>
+      <input id="street" type="text" formControlName="street" required/>
+      <div class="validation" *ngIf="form.controls.street.invalid && form.controls.street.touched">
+        <small *ngIf="form.controls.street.errors.required">Fill street input</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="form-control">
+      <label for="postcode">Postcode:</label>
+      <input id="postcode" type="text" formControlName="postcode" (keypress)="isInputNumber($event)" required/>
+      <div class="validation" *ngIf="form.controls.postcode.invalid && form.controls.postcode.touched">
+        <small *ngIf="form.controls.postcode.errors.required">Fill title input</small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label for="city">City:</label>
+      <input id="city" type="text" formControlName="city" required/>
+      <div class="validation" *ngIf="form.controls.city.invalid && form.controls.city.touched">
+        <small *ngIf="form.controls.city.errors.required">Fill city input</small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label for="country">Country:</label>
+      <input id="country" type="text" formControlName="country" required/>
+      <div class="validation" *ngIf="form.controls.country.invalid && form.controls.country.touched">
+        <small *ngIf="form.controls.country.errors.required">Fill country input</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="form-control">
+      <div class="card-type">
+        <input type="radio" formControlName="cardType" name="cardType" id="solo" value="Solo"/> Solo<br/>
+        <input type="radio" formControlName="cardType" name="cardType" id="switch" value="Switch"/> Switch<br/>
+        <input type="radio" formControlName="cardType" name="cardType" id="mastercard" value="Mastercard"/> Mastercard<br/>
+        <input type="radio" formControlName="cardType" name="cardType" id="visa" value="Visa"/> Visa
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label for="cardNumber">Card number:</label>
+      <input id="cardNumber" type="text" formControlName="cardNumber" (keypress)="isInputNumber($event)" required
+             maxlength="19" placeholder="XXXX-XXXX-XXXX-XXXX"/>
+      <div class="validation" *ngIf="form.controls.cardNumber.invalid && form.controls.cardNumber.touched">
+        <small *ngIf="form.controls.cardNumber.errors.required">Fill card input</small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label for="expiryDate">Expiry date:</label>
+      <div class="expiry-date">
+        <input id="expiryDate" type="text" formControlName="expiryMonth" placeholder="XX" (keypress)="isInputNumber($event)" required/>
+        <input type="text" formControlName="expiryYear" placeholder="XX" (keypress)="isInputNumber($event)" required/>
+      </div>
+      <div class="validation" *ngIf="form.controls.expiryMonth.invalid && form.controls.expiryMonth.touched ||
+                              form.controls.expiryYear.invalid && form.controls.expiryYear.touched">
+        <small *ngIf="form.controls.expiryMonth.errors.required &&
+        form.controls.expiryYear.errors.required">Fill expiry date input</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="red medium" routerLink="/basket">Cancel</button>
+    <button class="green medium" type="submit"
+      [disabled]="form.invalid">Proceed</button>
+  </div>
+</form>
+
+<ng-template #notFound>
+  <div class="else border">
+    <h2>Basket is empty</h2>
+  </div>
+</ng-template>

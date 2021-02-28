@@ -1,0 +1,63 @@
+.main {
+  display: flex;
+  padding: 20px;
+}
+
+.sort-card {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: 40px 30px;
+  margin-right: 10px;
+  height: 100px;
+  /*height: 362px;*/
+}
+
+.sort-card > input,
+.category > select {
+  width: 120px;
+}
+
+.category {
+  padding-top: 20px;
+}
+
+.prod-card {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: 20px;
+}
+
+.card {
+  margin: 20px;
+}
+
+.card-img-top {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+}
+
+.col:hover > .card > .card-title {
+  color: #19ab4b;
+}
+
+.card-text {
+  display: flex;
+}
+
+.price, .addBtns {
+  margin-left: auto;
+}
+
+.product-quantity {
+  margin-top: 10px;
+  display: flex;
+}
+
+input {
+  width: 30px;
+}
+

@@ -1,0 +1,69 @@
+<app-menu></app-menu>
+
+<div class="invoice-box" *ngIf="orderDetails; else notFound">
+  <table>
+
+    <tr class="information">
+      <td colspan="2">
+        <table>
+          <tr>
+            <td>
+              {{orderDetails.title}}, {{orderDetails.name}} {{orderDetails.surname}} <br>
+              {{orderDetails.number}}, {{orderDetails.street}} <br>
+              {{orderDetails.city}}, {{orderDetails.postcode}} <br>
+              {{orderDetails.country}}
+            </td>
+          </tr>
+        </table>
+    </td>
+    </tr>
+
+    <tr class="heading">
+      <td>
+        Paid by
+      </td>
+
+      <td>
+        Card
+      </td>
+    </tr>
+
+    <tr class="details">
+      <td>
+        {{orderDetails.cardType}}
+      </td>
+
+      <td>
+        XXXX-XXXX-XXXX-{{cardNumber}}
+      </td>
+    </tr>
+
+    <tr class="item" *ngFor="let product of basket">
+      <td>
+        {{product.name}}
+      </td>
+
+      <td>
+        {{(product.price * product.quantity).toFixed(2)}}$
+      </td>
+    </tr>
+
+    <tr class="total">
+      <td>
+
+      </td>
+
+      <td>
+        Total sum: {{totalSumFunc().totSum}}$ <br>
+        WAT sum: {{totalSumFunc().vatSum}}$ <br>
+        NO WAT sum: {{totalSumFunc().noVatSum}}$
+      </td>
+    </tr>
+  </table>
+</div>
+
+<ng-template #notFound>
+  <div class="else border">
+    <h2>Fill billing form</h2>
+  </div>
+</ng-template>

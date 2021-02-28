@@ -1,0 +1,56 @@
+<app-menu></app-menu>
+
+<div class="container" *ngIf="basket.length; else notFound">
+  <div class="main border zoom" *ngFor="let item of basket">
+    <img class="prod-img" src="{{item.imageSrc}}" alt="">
+    <div class="prod-name-quantity">
+      <h3 class="prod-name">{{item.name}}</h3>
+      <div class="prod-quantity">
+        <button class="small green" (click)="decreaseQt(item)">-</button>
+        <input type="text" (change)="changeQt(item)" (keypress)="isInputNumber($event)" [(ngModel)]="item.quantity">
+        <button class="small green" (click)="increaseQt(item)">+</button>
+      </div>
+    </div>
+    <div class="prod-value-del">
+      <div>
+        <button (click)="deleteProd(item)" class="prod-delete">
+        </button>
+      </div>
+      <p class="prod-value">{{totalPrice(item)}}$</p>
+    </div>
+  </div>
+  <div class="shop-continue" *ngIf="basket.length">
+    <button class="medium red" (click)="clearBasket()">Clear</button>
+    <button class="medium green" routerLink="/products">Continue</button>
+  </div>
+</div>
+
+<div class="total-container" *ngIf="basket.length">
+  <div class="total border">
+    <div class="total-header">
+      <h3>Basket total:</h3>
+    </div>
+    <div class="total-sum">
+      <ul>
+        <li>Total sum:</li>
+        <li>VAT sum:</li>
+        <li>WVAT sum:</li>
+      </ul>
+      <ul>
+        <li>{{totalSumFunc().totSum}}$</li>
+        <li>{{totalSumFunc().vatSum}}$</li>
+        <li>{{totalSumFunc().noVatSum}}$</li>
+      </ul>
+    </div>
+    <div class="total-btn">
+      <button class="medium green" routerLink="/order">Continue</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #notFound>
+  <div class="else border">
+    <h2>Basket is empty</h2>
+  </div>
+</ng-template>
+

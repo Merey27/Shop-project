@@ -1,0 +1,90 @@
+.prod-name-quantity, .prod-value-del,
+.container, .total-container, .total,
+.prod-delete, .shop-continue, .total-sum,
+.total-header, .total-btn {
+  display: flex;
+}
+
+.prod-name-quantity, .prod-value-del,
+.container, .total-container, .total {
+  flex-direction: column;
+}
+
+.prod-name-quantity, .prod-value-del,
+.shop-continue, .total-sum {
+  justify-content: space-between;
+}
+
+.container, .total-container {
+  margin: 50px;
+}
+
+.container {
+  align-items: center;
+}
+
+.total-container {
+  align-items: flex-end;
+}
+
+.main {
+  padding: 5px;
+  margin: 10px;
+  display: flex;
+  width: 500px;
+}
+
+
+.prod-value-del, .prod-delete {
+  margin-left: auto;
+}
+
+.prod-name {
+  padding-left: 8px;
+}
+
+.prod-quantity > input {
+  width: 30px;
+}
+
+.prod-value {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.shop-continue {
+  width: 500px;
+}
+
+.total {
+  width: 400px;
+}
+
+.total-header {
+  justify-content: center;
+  background: #bbbbbb;
+}
+
+.total-sum {
+  border-bottom: #bbbbbb 1px solid;
+}
+
+.total-btn {
+  justify-content: flex-end;
+  margin: 10px;
+}
+
+li {
+  padding: 10px;
+}
+
+.prod-delete {
+  background-image: url('../../assets/letter-x.svg');
+  background-color: white;
+  background-repeat: no-repeat;
+}
+
+.prod-img {
+  width: 100px;
+  height: 100px;
+}
