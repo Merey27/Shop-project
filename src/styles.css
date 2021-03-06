@@ -93,8 +93,9 @@ select {
 
 .else {
   display: flex;
-  justify-content: center;
+  align-items: center;
   padding: 20px;
+  flex-direction: column;
 }
 
 .zoom:hover {

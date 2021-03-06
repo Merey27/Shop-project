@@ -20,8 +20,8 @@
     </div>
   </div>
   <div class="shop-continue" *ngIf="basket.length">
-    <button class="medium red" (click)="clearBasket()">Clear</button>
-    <button class="medium green" routerLink="/products">Continue</button>
+    <button class="medium red" (click)="clearBasket()">Clear basket</button>
+    <button class="medium green" routerLink="/products">Continue shopping</button>
   </div>
 </div>
 
@@ -43,7 +43,7 @@
       </ul>
     </div>
     <div class="total-btn">
-      <button class="medium green" routerLink="/order">Continue</button>
+      <button class="medium green" routerLink="/order">Process order</button>
     </div>
   </div>
 </div>
@@ -51,6 +51,7 @@
 <ng-template #notFound>
   <div class="else border">
     <h2>Basket is empty</h2>
+    <button routerLink="/products" class="btn green">Continue shopping</button>
   </div>
 </ng-template>
 

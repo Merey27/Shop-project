@@ -6,9 +6,12 @@
   <div class="controls">
     <div class="form-control">
       <label for="title">Title:</label>
-      <input id="title" type="text" formControlName="title" required/>
+      <select id="title" formControlName="title" required>
+        <option [ngValue]="null" disabled>Choose title</option>
+        <option *ngFor="let title of titleDate">{{title}}</option>
+      </select>
       <div class="validation" *ngIf="form.controls.title.invalid && form.controls.title.touched">
-        <small *ngIf="form.controls.title.errors.required">Fill title input</small>
+        <small *ngIf="form.controls.title.errors.required">Title is required</small>
       </div>
     </div>
 
@@ -16,7 +19,8 @@
       <label for="name">Name:</label>
       <input id="name" type="text" formControlName="name" required/>
       <div class="validation" *ngIf="form.controls.name.invalid && form.controls.name.touched">
-        <small *ngIf="form.controls.name.errors.required">Fill name input</small>
+        <small *ngIf="form.controls.name.errors.required">Name is required</small>
+        <small *ngIf="form.controls.name.errors.pattern">This entry can contain only letters</small>
       </div>
     </div>
 
@@ -24,35 +28,20 @@
       <label for="surname">Surname:</label>
       <input id="surname" type="text" formControlName="surname" required/>
       <div class="validation" *ngIf="form.controls.surname.invalid && form.controls.surname.touched">
-        <small *ngIf="form.controls.surname.errors.required">Fill surname input</small>
+        <small *ngIf="form.controls.surname.errors.required">Surname is required</small>
+        <small *ngIf="form.controls.surname.errors.pattern">This entry can contain only letters</small>
       </div>
     </div>
   </div>
 
-  <div class="controls second">
-    <div class="form-control">
-      <label for="number">Number:</label>
-      <input id="number" type="text" formControlName="number" (keypress)="isInputNumber($event)" required/>
-      <div class="validation" *ngIf="form.controls.number.invalid && form.controls.number.touched">
-        <small *ngIf="form.controls.number.errors.required">Fill number input</small>
-      </div>
-    </div>
-
-    <div class="form-control">
-      <label for="street">Street:</label>
-      <input id="street" type="text" formControlName="street" required/>
-      <div class="validation" *ngIf="form.controls.street.invalid && form.controls.street.touched">
-        <small *ngIf="form.controls.street.errors.required">Fill street input</small>
-      </div>
-    </div>
-  </div>
 
   <div class="controls">
     <div class="form-control">
-      <label for="postcode">Postcode:</label>
-      <input id="postcode" type="text" formControlName="postcode" (keypress)="isInputNumber($event)" required/>
-      <div class="validation" *ngIf="form.controls.postcode.invalid && form.controls.postcode.touched">
-        <small *ngIf="form.controls.postcode.errors.required">Fill title input</small>
+      <label for="country">Country:</label>
+      <input id="country" type="text" formControlName="country" required/>
+      <div class="validation" *ngIf="form.controls.country.invalid && form.controls.country.touched">
+        <small *ngIf="form.controls.country.errors.required">Country is required</small>
+        <small *ngIf="form.controls.country.errors.pattern">This entry can contain only letters</small>
       </div>
     </div>
 
@@ -60,19 +49,44 @@
       <label for="city">City:</label>
       <input id="city" type="text" formControlName="city" required/>
       <div class="validation" *ngIf="form.controls.city.invalid && form.controls.city.touched">
-        <small *ngIf="form.controls.city.errors.required">Fill city input</small>
+        <small *ngIf="form.controls.city.errors.required">City is required</small>
+        <small *ngIf="form.controls.city.errors.pattern">This entry can contain only letters</small>
       </div>
     </div>
 
+
     <div class="form-control">
-      <label for="country">Country:</label>
-      <input id="country" type="text" formControlName="country" required/>
-      <div class="validation" *ngIf="form.controls.country.invalid && form.controls.country.touched">
-        <small *ngIf="form.controls.country.errors.required">Fill country input</small>
+      <label for="street">Street:</label>
+      <input id="street" type="text" formControlName="street" required/>
+      <div class="validation" *ngIf="form.controls.street.invalid && form.controls.street.touched">
+        <small *ngIf="form.controls.street.errors.required">Street is required</small>
       </div>
     </div>
   </div>
 
+  <div class="controls second">
+    <div class="form-control">
+      <label for="number">Phone number:</label>
+      <input id="number" type="text" formControlName="number" (keypress)="isInputNumber($event)" required/>
+      <div class="validation" *ngIf="form.controls.number.invalid && form.controls.number.touched">
+        <small *ngIf="form.controls.number.errors.required">Phone number is required</small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label for="postcode">Postcode:</label>
+      <input id="postcode" type="text" formControlName="postcode" (keypress)="isInputNumber($event)" required/>
+      <div class="validation" *ngIf="form.controls.postcode.invalid && form.controls.postcode.touched">
+        <small *ngIf="form.controls.postcode.errors.required">Title is required</small>
+      </div>
+    </div>
+
+    <div class="form-control">
+    </div>
+  </div>
+
+  <div>
+      <h5 class="reminder">Be sure to enter the billing address associated with your credit card</h5>
   <div class="controls">
     <div class="form-control">
       <div class="card-type">
@@ -88,23 +102,26 @@
       <input id="cardNumber" type="text" formControlName="cardNumber" (keypress)="isInputNumber($event)" required
              maxlength="19" placeholder="XXXX-XXXX-XXXX-XXXX"/>
       <div class="validation" *ngIf="form.controls.cardNumber.invalid && form.controls.cardNumber.touched">
-        <small *ngIf="form.controls.cardNumber.errors.required">Fill card input</small>
+        <small *ngIf="form.controls.cardNumber.errors.required">Card number is required</small>
       </div>
     </div>
 
     <div class="form-control">
       <label for="expiryDate">Expiry date:</label>
       <div class="expiry-date">
-        <input id="expiryDate" type="text" formControlName="expiryMonth" placeholder="XX" (keypress)="isInputNumber($event)" required/>
-        <input type="text" formControlName="expiryYear" placeholder="XX" (keypress)="isInputNumber($event)" required/>
+        <input id="expiryDate" [maxLength]="2" type="text" formControlName="expiryMonth" placeholder="XX" (keypress)="isInputNumber($event)" required/>
+        <input type="text" [maxLength]="2" formControlName="expiryYear" placeholder="XX" (keypress)="isInputNumber($event)" required/>
       </div>
       <div class="validation" *ngIf="form.controls.expiryMonth.invalid && form.controls.expiryMonth.touched ||
                               form.controls.expiryYear.invalid && form.controls.expiryYear.touched">
         <small *ngIf="form.controls.expiryMonth.errors.required &&
-        form.controls.expiryYear.errors.required">Fill expiry date input</small>
+        form.controls.expiryYear.errors.required">Expiry date is required</small>
+        <small *ngIf="form.controls.expiryMonth.errors.pattern">Please, fill correct month</small>
       </div>
     </div>
   </div>
+  </div>
+
 
   <div class="controls">
     <button class="red medium" routerLink="/basket">Cancel</button>

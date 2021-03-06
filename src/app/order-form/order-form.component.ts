@@ -12,6 +12,9 @@ import {Router} from '@angular/router';
 export class OrderFormComponent implements OnInit {
   form: FormGroup;
   basketProducts;
+  pattern = "^[ a-zA-Z'][a-zA-Z ]*$";
+  patternExpiryDate = '^([1-9]|1[012])$';
+  titleDate = ['Mr', 'Mrs', 'Miss', 'Ms', 'Mx', 'Sir', 'Dr', 'Lady', 'Lord'];
 
   constructor(
     private service: CartService,
@@ -22,20 +25,19 @@ export class OrderFormComponent implements OnInit {
   ngOnInit(): void {
     this.storageService.getProduct();
     this.storageService.basketProducts$.subscribe(data => this.basketProducts = data);
-    console.log(typeof this.basketProducts);
 
     this.form = new FormGroup({
       title: new FormControl(null, Validators.required),
-      name: new FormControl(null, Validators.required),
-      surname: new FormControl(null, Validators.required),
+      name: new FormControl(null, [Validators.required, Validators.pattern(this.pattern)]),
+      surname: new FormControl(null, [Validators.required, Validators.pattern(this.pattern)]),
       number: new FormControl(null, [Validators.required]),
       street: new FormControl(null, Validators.required),
       postcode: new FormControl(null, [Validators.required]),
-      city: new FormControl(null, Validators.required),
-      country: new FormControl(null, Validators.required),
+      city: new FormControl(null, [Validators.required, Validators.pattern(this.pattern)]),
+      country: new FormControl(null, [Validators.required, Validators.pattern(this.pattern)]),
       cardType: new FormControl(null),
       cardNumber: new FormControl(null, [Validators.required]),
-      expiryMonth: new FormControl(null, [Validators.required]),
+      expiryMonth: new FormControl(null, [Validators.required, Validators.pattern(this.patternExpiryDate)]),
       expiryYear: new FormControl(null, [Validators.required]),
     });
   }
