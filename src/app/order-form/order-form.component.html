@@ -1,8 +1,6 @@
 <app-menu></app-menu>
 
 <form class="card border" *ngIf="basketProducts.length > 0; else notFound" [formGroup]="form" (ngSubmit)="submit()">
-<!--  <h2>Ordering</h2>-->
-
   <div class="controls">
     <div class="form-control">
       <label for="title">Title:</label>
@@ -126,12 +124,15 @@
   <div class="controls">
     <button class="red medium" routerLink="/basket">Cancel</button>
     <button class="green medium" type="submit"
-      [disabled]="form.invalid">Proceed</button>
+     >Proceed</button>
   </div>
 </form>
 
+<div id="snackbar">Some text some message..</div>
+
 <ng-template #notFound>
   <div class="else border">
-    <h2>Basket is empty</h2>
+    <h2>The billing for will be available as soon as you make a purchase</h2>
+    <button routerLink="/products" class="btn green">Continue shopping</button>
   </div>
 </ng-template>

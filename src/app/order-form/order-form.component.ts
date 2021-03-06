@@ -15,6 +15,7 @@ export class OrderFormComponent implements OnInit {
   pattern = "^[ a-zA-Z'][a-zA-Z ]*$";
   patternExpiryDate = '^([1-9]|1[012])$';
   titleDate = ['Mr', 'Mrs', 'Miss', 'Ms', 'Mx', 'Sir', 'Dr', 'Lady', 'Lord'];
+  submitted = false;
 
   constructor(
     private service: CartService,
@@ -48,9 +49,9 @@ export class OrderFormComponent implements OnInit {
 
   submit(): void {
     if (this.form.invalid) {
+      this.storageService.showWarning('Please complete all fields to continue!');
       return;
     }
-
     this.storageService.setOrderDetails(this.form.value);
     this.router.navigate(['/invoice']);
   }

@@ -31,5 +31,10 @@ h2, h5 {
 .reminder {
   margin: 0 auto;
   text-align: center;
+  color: #2196f3;
 }
 
+small {
+  font-size: 12px;
+  line-height: 1.6;
+}

@@ -61,4 +61,11 @@ export class StorageService {
     setTimeout(() => { x.className = x.className.replace('show', ''); }, 1000);
   }
 
+  showWarning(data): void {
+    const x = document.getElementById('snackbar');
+    x.innerHTML = `${data}`;
+    x.className = 'show';
+    x.style.background = '#FFCC00';
+    setTimeout(() => { x.className = x.className.replace('show', ''); }, 1000);
+  }
 }
