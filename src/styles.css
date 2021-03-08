@@ -31,13 +31,13 @@ button {
   cursor: pointer;
 }
 
-button:disabled {
+button:disabled, .gray {
    cursor: not-allowed;
    background: #bbbbbb;
    color: #111;
  }
 
-button:disabled:hover {
+button:disabled:hover, .gray {
   cursor: not-allowed;
   background: #9b9b9b;
   color: #111;
